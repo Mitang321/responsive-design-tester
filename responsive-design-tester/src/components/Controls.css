@@ -7,7 +7,8 @@
   padding: 10px;
   margin-right: 10px;
   font-size: 16px;
-  width: 300px;
+  width: 100%;
+  max-width: 400px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -38,10 +39,18 @@
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .profile-form button {
   margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #28a745;
+}
+
+.profile-form button:hover {
+  background-color: #218838;
 }
 
 .profile-list {
@@ -52,8 +61,64 @@
 
 .profile-list li {
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-list button {
-  margin-right: 10px;
+  margin: 0 5px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.modal-body {
+  margin-top: 10px;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.modal-footer button {
+  margin-left: 10px;
 }

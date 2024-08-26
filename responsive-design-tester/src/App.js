@@ -27,36 +27,26 @@ function App() {
   };
 
   const addDeviceProfile = (name, width, height) => {
-    if (deviceProfiles.some((profile) => profile.name === name)) {
-      alert("Profile with this name already exists.");
-      return;
-    }
     setDeviceProfiles([
       ...deviceProfiles,
       { name, width: Number(width), height: Number(height) },
     ]);
   };
 
+  const updateDeviceProfile = (oldName, name, width, height) => {
+    setDeviceProfiles(
+      deviceProfiles.map((profile) =>
+        profile.name === oldName
+          ? { name, width: Number(width), height: Number(height) }
+          : profile
+      )
+    );
+  };
+
   const deleteDeviceProfile = (name) => {
     setDeviceProfiles(
       deviceProfiles.filter((profile) => profile.name !== name)
     );
-  };
-
-  const updateDeviceProfile = (profileName, newName, newWidth, newHeight) => {
-    setDeviceProfiles((prevProfiles) =>
-      prevProfiles.map((profile) =>
-        profile.name === profileName
-          ? {
-              ...profile,
-              name: newName,
-              width: Number(newWidth),
-              height: Number(newHeight),
-            }
-          : profile
-      )
-    );
-    setEditingProfile(null);
   };
 
   return (
