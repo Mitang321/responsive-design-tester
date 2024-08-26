@@ -1,14 +1,45 @@
-.viewport {
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  margin: 0 auto;
+.viewport-container {
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
 }
 
-.viewport p {
-  text-align: center;
-  font-size: 18px;
-  color: #333;
+.viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.screenshot-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.screenshot-button:hover {
+  background-color: #0056b3;
+}
+
+.screenshot-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
 }
