@@ -7,11 +7,13 @@ function Controls({
   deviceProfiles,
   addDeviceProfile,
   deleteDeviceProfile,
+  updateDeviceProfile,
 }) {
   const [url, setUrl] = useState("");
   const [profileName, setProfileName] = useState("");
   const [profileWidth, setProfileWidth] = useState("");
   const [profileHeight, setProfileHeight] = useState("");
+  const [editingProfile, setEditingProfile] = useState(null);
 
   const handleLoadWebsite = () => {
     setWebsiteURL(url);
@@ -19,11 +21,28 @@ function Controls({
 
   const handleAddProfile = () => {
     if (profileName && profileWidth && profileHeight) {
-      addDeviceProfile(profileName, profileWidth, profileHeight);
+      if (editingProfile) {
+        updateDeviceProfile(
+          editingProfile,
+          profileName,
+          profileWidth,
+          profileHeight
+        );
+        setEditingProfile(null);
+      } else {
+        addDeviceProfile(profileName, profileWidth, profileHeight);
+      }
       setProfileName("");
       setProfileWidth("");
       setProfileHeight("");
     }
+  };
+
+  const handleEditProfile = (profile) => {
+    setProfileName(profile.name);
+    setProfileWidth(profile.width);
+    setProfileHeight(profile.height);
+    setEditingProfile(profile.name);
   };
 
   return (
@@ -61,7 +80,9 @@ function Controls({
           value={profileHeight}
           onChange={(e) => setProfileHeight(e.target.value)}
         />
-        <button onClick={handleAddProfile}>Add Profile</button>
+        <button onClick={handleAddProfile}>
+          {editingProfile ? "Update Profile" : "Add Profile"}
+        </button>
       </div>
 
       <ul className="profile-list">
@@ -72,6 +93,7 @@ function Controls({
             >
               {profile.name} ({profile.width}x{profile.height})
             </button>
+            <button onClick={() => handleEditProfile(profile)}>Edit</button>
             <button onClick={() => deleteDeviceProfile(profile.name)}>
               Delete
             </button>

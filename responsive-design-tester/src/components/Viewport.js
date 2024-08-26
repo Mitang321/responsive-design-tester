@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import html2canvas from "html2canvas";
 import "./Viewport.css";
 
 function Viewport({ width, height, websiteURL }) {
@@ -8,29 +7,6 @@ function Viewport({ width, height, websiteURL }) {
 
   const handleLoad = () => {
     setLoading(false);
-  };
-
-  const captureScreenshot = () => {
-    if (!viewportRef.current) {
-      console.error("Viewport reference not found");
-      return;
-    }
-
-    html2canvas(viewportRef.current, {
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: "#fff",
-      scale: window.devicePixelRatio,
-    })
-      .then((canvas) => {
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = "screenshot.png";
-        link.click();
-      })
-      .catch((error) => {
-        console.error("Screenshot capture failed:", error);
-      });
   };
 
   return (
@@ -51,13 +27,6 @@ function Viewport({ width, height, websiteURL }) {
           loading="lazy"
         />
       </div>
-      <button
-        onClick={captureScreenshot}
-        className="screenshot-button"
-        disabled={loading}
-      >
-        Capture Screenshot
-      </button>
     </div>
   );
 }

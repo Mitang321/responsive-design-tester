@@ -9,6 +9,7 @@ function App() {
   const [height, setHeight] = useState(667);
   const [websiteURL, setWebsiteURL] = useState("");
   const [deviceProfiles, setDeviceProfiles] = useState([]);
+  const [editingProfile, setEditingProfile] = useState(null);
 
   useEffect(() => {
     const savedProfiles =
@@ -26,6 +27,10 @@ function App() {
   };
 
   const addDeviceProfile = (name, width, height) => {
+    if (deviceProfiles.some((profile) => profile.name === name)) {
+      alert("Profile with this name already exists.");
+      return;
+    }
     setDeviceProfiles([
       ...deviceProfiles,
       { name, width: Number(width), height: Number(height) },
@@ -38,6 +43,22 @@ function App() {
     );
   };
 
+  const updateDeviceProfile = (profileName, newName, newWidth, newHeight) => {
+    setDeviceProfiles((prevProfiles) =>
+      prevProfiles.map((profile) =>
+        profile.name === profileName
+          ? {
+              ...profile,
+              name: newName,
+              width: Number(newWidth),
+              height: Number(newHeight),
+            }
+          : profile
+      )
+    );
+    setEditingProfile(null);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -47,6 +68,9 @@ function App() {
         deviceProfiles={deviceProfiles}
         addDeviceProfile={addDeviceProfile}
         deleteDeviceProfile={deleteDeviceProfile}
+        updateDeviceProfile={updateDeviceProfile}
+        editingProfile={editingProfile}
+        setEditingProfile={setEditingProfile}
       />
       <Viewport width={width} height={height} websiteURL={websiteURL} />
     </div>
