@@ -1,0 +1,14 @@
+.viewport {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewport p {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
