@@ -2,6 +2,10 @@
 
 A simple tool to test how your website looks on different device sizes. This React app allows users to load any website and view it in various viewport sizes, including custom device profiles that can be added, edited, or deleted.
 
+## Live Preview
+
+[Live Preview](https://responsive-design-tester.vercel.app/)
+
 ## Features
 
 - **Load Website**: Enter a website URL to load it in the testing viewport.
